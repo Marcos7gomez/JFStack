@@ -1,5 +1,6 @@
 package com.cursojava.curso.dao;
 
+import com.cursojava.curso.models.Usuario;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
@@ -13,10 +14,17 @@ public class UsuarioDaoImp  implements UsuarioDao {
 
     @PersistenceContext
     private EntityManager entityManager;
+
     @Override
-    public List getUsuarios() { //Consulta a base de datos
+    @Transactional
+    public List<Usuario> getUsuarios() { //Consulta a base de datos
         String query = "FROM Usuario";
         return entityManager.createQuery(query).getResultList();
+    }
 
+    @Override
+    public void eliminar(Long id) {
+        Usuario usuario = entityManager.find(Usuario.class, id);
+        entityManager.remove(usuario);
     }
 }
