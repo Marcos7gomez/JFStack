@@ -1,9 +1,6 @@
 package com.cursojava.curso.models;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -16,6 +13,7 @@ public class Usuario {
 //Con anotaciones se agregan los get y set mediante lombook
 
     @Id
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Getter @Setter @Column(name = "id")
     private Long id;
 
